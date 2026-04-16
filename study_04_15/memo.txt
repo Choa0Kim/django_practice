@@ -1,0 +1,55 @@
+DB
+- 데이터 덩어리(창고)
+
+DBMS (DB Management System)
+- 효율적이고 빠르게 데이터를 관리(생성, 조회, 수정, 삭제)
+- 관계가 있는 DB(RDBMS)
+    - 데이터 간 관계가 중요한 경우
+
+- 관계가 없는 데이터를 저장하기 위한 DB (NoSQL) - ex.mongo DB
+    - 이미지, 대용량 데이터
+
+
+ORM (object-Relational Mapping, 객체 관계 매핑) - 파이썬이랑 sql을 매핑
+- 파이썬을 통해서 DB를 조작 => ORM의 역할
+
+
+QuerySet API
+- QuerySet: 조회와 관련된 ORM기술을 객체로 구현해 놓은 것
+    - 전체 조회(all) / 단일 조회(get)/ 조건 조회(filter, exclude) => 메서드로 다 구현이 되어 있음. 그래서 API라고 부름
+
+- 생성(create)
+- 삭제(delete)
+- 수정(update)
+
+- [심화] 실무에서는 조금 더 다양한 메서드를 쓴다. 그냥 get이 아니라
+ - Article.object.get(id=4)
+   - id가 4번인 게시글이 없다. => 버그남.(서버 멈춤)
+    => get_object_or_404 사용 => id가 4번인 게시글이 잇으면 조회. 없으면 404페이지 출력
+    get_list_or_404 
+    => 리스트가 있으면 조회, 없으면 404 페이지를 출력
+
+- Article.object.create(title="test", content="test")
+    - 제목이 동일한 게시글은 생성할 수 없다! 제약조건을 달았을 경우
+    => get_or_create()
+     - 데이터가 있으면 가져오고, 없으면 생성
+if  Article.object.filter(title__contains="test"):
+    article = Article.object.get(title="title")
+else:
+    article = Article.object.create(...)
+
+- 특정 조건을 만족하는 데이터가 있는가?
+ - id가 4번인 게시글이 있는가?
+ - filter +exists
+ -> Article.object.filter(id=4).exists()
+
+ - 다양한 데이터를 한 번에 생성/수정 할 때
+  - bulk 라는 키워드로 만들어져 있다.
+  - 예시. 파일이나 외부 API에서 데이터를 받아와서 한 번에 DB에 저장
+  - Article.object.bulk_create([
+    Article(title="A"),
+    Article(title="B"),
+    .....
+  ])
+
+    

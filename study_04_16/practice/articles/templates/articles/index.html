@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>게시글 목록</h1>
+
+
+<a href="{% url "articles:create" %}">게시글 생성</a>
+
+<p>
+    필터:
+    {% if filter_type == "public" %}
+        <strong>공개만</strong>
+        <a href="{% url "articles:index" %}?filter=all">전체확인 </a>
+    {% else %}
+        
+        <a href="{% url "articles:index" %}?filter=public">공개만 확인 </a>
+        <strong>전체 확인</strong>
+    {% endif %}
+
+</p>
+
+{% for article  in articles  %}
+    <p>번호: {{ article.id }}</p>
+    {% if article.is_public %}
+        <p>(공개)</p>
+    {% else %}
+        <p>비공개</p>
+    {% endif %}
+
+    <p>제목: {{ article.title }}</p>
+    <p>내용: {{ article.content }}</p>
+
+    <a href="{% url "articles:detail" article.id %}">상세 페이지로 이동</a>
+    <hr>
+{% empty %}
+    <p>아직 게시글이 없습니다</p>
+{% endfor %}
+
+
+{% endblock content %}

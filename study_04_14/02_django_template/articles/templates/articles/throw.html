@@ -1,0 +1,20 @@
+{% extends "articles/base.html" %}
+{% block content %}
+  <h1>Throw</h1>
+  <form action="/catch/" method="GET">
+    <input type="text" id="message" name="message">
+    <input type="submit">
+  </form>
+{% endblock content %}
+
+{% comment %} "/catch/"=> 장고 서버 위치 "/"=>호스트  
+throw -catch
+1. throw 페이지에서 form 데이터 작성 후 제출(form 요소의action 속성 값으로 요청)
+2. catch/ 로 요청(+사용자 입력 데이터와 함께)
+3.  catch/ 문자열과 일치하는 urls.py의 path 함수 호출
+4. catch view 함수 호출
+5. catch view 함수에서 사용자가 보낸 form 데이터 추출 후 응답 객체 반환
+6. 응답 객체 전달
+7. 응답 객체 해석 후 화면 출력
+
+{% endcomment %}

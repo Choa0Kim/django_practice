@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p>조회수: {{ article.view_count }}</p>
+{% if article.is_public %}
+    <p>(공개)</p>
+{% else %}
+    <p>(비공개)</p>
+{% endif %}
+
+<p>내용: {{ article.content }}</p>
+<p>작성일: {{ article.created_at }}</p>
+<p>수정일: {{ article.updated_at }}</p>
+
+<a href="{% url "articles:update"  article.id %}">수정하기</a>
+<form action=" {% url "articles:delete" article.id %}" method="POST">
+    {% csrf_token %}
+    <button type="submit">삭제하기 </button>
+
+</form>
+{% endblock content %}

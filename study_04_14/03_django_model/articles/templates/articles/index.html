@@ -1,0 +1,29 @@
+{% extends "base.html"  %}
+
+
+{% block css %}
+<style>
+p {
+    color: red;
+}
+</style>
+{% endblock css %}
+
+{% block content %}
+
+    <h1>Article</h1>
+    <hr>
+    {{ articles }}
+    {% for article in articles %}
+    <div>
+        <p>글 번호: {{ article.pk }}</p>
+        <p>글 제목: <a href="{% url "articles:detail" article.pk %}">{{ article.title }}</a></p>      
+        {% comment %} <p>글 내용: {{ article.content }}</p>  {% endcomment %}
+        <hr>
+
+    </div>
+        
+    {% endfor %}    
+    {% endblock content %}
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판</title>
+</head>
+<body>
+    <nav>
+        {% comment %} articles:index를 ?  {% endcomment %}
+        <a href="{% url "articles:index" %}">Home</a>
+
+    </nav>
+
+    <hr>
+
+    <main> 
+
+    </main>
+        {% block content %}
+            상속 안됨!
+        {% endblock content %}
+    
+</body>
+</html>
+
+{% comment %} 각 페이지가 main 쪽만 대체되어서 나올것임 {% endcomment %}

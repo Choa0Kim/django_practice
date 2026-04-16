@@ -1,0 +1,80 @@
+LTS 버전 선택 중요
+
+
+릴리즈 노트=>버전 관리
+
+템플릿 상속
+- 전체적으로 적용될 html 구조를 부모에 만들어 두고
+    - 전체 적용 구조 예시:
+
+    {%extends  '부모파일' %}
+    {% block 블록이름 %}
+    {% endblock %}
+
+- 자식에서 내부 내용만 바꾸면서 쓰는 방식    
+- 만약 base.html이  앱 폴더 내부에 있지 않다면 
+    -setting.py 의 templates -> dirs에 경로를 추가해야 함
+    - 장고는 기본적으로 templates을 <APP>/templates 만 검색
+
+<form> => 사용자 입력을 다른 곳으로 전송하기 위한 태그
+응용예시
+<form action= ""method ="">
+- action: 요청 주소
+- method: HTTP 메서드. 사용자 요청 종류=(GET/POST 등)
+
+
+<form action = "/articles/" method="GET">
+=> 어디로 요청을 보내는건지(맨 앞 /)
+   : <우리 서버 주소>/articles/
+   -개발 서버라면 127.0.0.1:8000/articles/ 
+
+<form action = "" method="GET">   
+=> <현재 주소>에 GET 요청
+
+-----------------------------------------------
+
+http://127.0.0.1:8000/articles/ 
+    - 여기로 접속하면서 데이터를 함께 주고 싶다.
+
+url로 값을 전달하는 방식
+1. Query parameter
+http://127.0.0.1:8000/articles/?key=value
+<주소>?key1=value1&key2=value2&....
+
+https://www.google.com/search?q=파이썬
+
+Django에서는 어떻게 사용되는지
+- requeset.GET 안에 포함되어있음(딕셔너리 형태로)
+
+ex. 3번째 게시글을 조회하고 싶다.
+
+http://127.0.0.1:8000/articles/?index=3 =>권장 X
+http://127.0.0.1:8000/articles/3/ => url 내부에서 3번째 라는 걸 명시
+
+
+2. Path Variable
+- url 내부에 변수를 포함시키자
+  http://127.0.0.1:8000/articles/<int>/ 
+
+  http://127.0.0.1:8000/articles/3/
+
+-------------------------------
+
+http://127.0.0.1:8000/articles/     (전체 게시글 조회) -> article_list
+http://127.0.0.1:8000/articles/1/   (상세 게시글 조회) -> article_detail
+http://127.0.0.1:8000/articles/2/   (상세 게시글 조회) -> article_detail
+--> 직접 경로를 무조건 다 적어주어야 하는가?
+--> 이름을 붙여주자
+
+urls.py에 세팅
+- app_name: 앱 별로 구분할 수 있는 이름 공간
+- path(경로, view 함수, name="")
+    - 3번째 파라미터 name =실제 경로에 붙인 이름
+
+html에서 활용할 때
+- 기존방식 (권장 X)
+
+
+
+
+

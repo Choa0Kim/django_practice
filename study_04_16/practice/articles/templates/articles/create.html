@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>게시글 생성</h1>
+{% comment %} form 우로 post요청을 보냏때는 csrf토큰도 같아 줘야 함 {% endcomment %}
+<form action="{% url "articles:create" %}" method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">작성하기</button>
+
+</form>
+
+{% endblock content %}
