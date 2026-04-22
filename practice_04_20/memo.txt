@@ -1,0 +1,45 @@
+Static / Media
+
+Static
+- 개발자가 미리 올려놓은 파일
+ - 보통 파일이름이 고정되어 있다
+    <img src="/asset/image/header.jpg" alt="upload image">
+- 자동으로 서버의 특정 경로에 저장해야 함.
+    - STATIC_URL: 사용자가 요청할 경로(URL)
+    - STATIC_ROOT: 배포시에 실제 파일 저장 경로
+      - python manage.py collectstatics 명령어를 치면
+        ->STATIC_ROOT에 모든 Static파일들이 모인다
+    -STATICFILES_DIRS: Static 파일 탐색 추가 경로
+
+- URL 설정
+ - 자동으로 된다(앱 내부/ STATIC_ROOT를 자동으로 검색)
+
+
+
+
+Media
+- 사용자가 업로드하는 파일
+ - 파일 이름이 고정 x
+ - 1. url이 동적으로 생성되도록 구현
+ - 2. DB에 이미지 경로를 저장하는 방식(좀 더 단순한 방식)
+   - RDBMS의 경우 이미지 자체를 db에 저장하지 않음
+    <img src="{{ article.image.url }}" alt="upload image">
+
+- 서버의 특정 결로에 저장해야 한다
+ - MEDIA_URL: 사용자가 요청할 경로(URL)
+ - MEDIA_ROOT: 실제로 미디어 파일이 저장될 경로
+
+-활용 예사(models.py)
+ - image - models.ImageField(upload_to ='articles/', blank=True)
+ ->실제저장: MEDIA_ROOT/articles/ 폴더에 \저장
+ ->요청 URL: 서버주소/MEDIA_URL/요청
+
+- MEDIA_URL에 대한 경로 설정(urls.py)
+ - urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+ - 프론트에서 <form> 를 통해 파일을 전송할 때 설정해야 하는 것
+  - 파일을 포함하여 전송하도록 인코딩(enctype="multipart/form-data")
+ <form action="" method="POST" enctype="multipart.form-data">
+    <input type="file">
+    
+

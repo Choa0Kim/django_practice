@@ -1,0 +1,30 @@
+
+1. login_required
+로그인된 사용자만 프로필 페이지에 접근 가능하다(예외 상황 처리)
+
+- 프론트에서도 작업
+ ->ui를 없앤다
+- 백엔드에서도 작업
+ -> login_required등을 활용한다
+ + 백엔드에서도 같이 작업해야하는 이유
+ -> URL 직접 접속 차단해야하기 때문에.
+
+http://127.0.0.1:8000/accounts/login/
+
+http://127.0.0.1:8000/accounts/login/?next=/accounts/profile/
+
+사용자: 프로필 페이지 들어가려다가 막힘
+--> 로그인 이후: 프로필 페이지로 돌아가야 정상
+
+
+현재 흐름
+GET http://127.0.0.1:8000/accounts/login/?next=/accounts/profile/
+
+POST accounts:login
+--> next가 포함 X
+
+GET http://127.0.0.1:8000/accounts/login/?next=/accounts/profile/
+
+
+2. is_authenticate
+

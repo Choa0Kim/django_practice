@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2> {{ user }}님의 프로필 페이지 </h2>
+
+<img src="{{ user.profile_image.url }}" alt="">
+
+
+<p>username: {{ user.username }}</p>
+<p>nickname: {{ user.nickname }}</p>
+<p>email: {{ user.email | default:'-' }}</p>
+<p>firstname: {{ user.firstname | default:'-' }}</p>
+<p>lastname: {{ user.lastname | default:'-' }}</p>
+
+{% endblock content %}
