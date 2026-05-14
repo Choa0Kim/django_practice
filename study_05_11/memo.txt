@@ -1,0 +1,29 @@
+서버
+~~~er server => 제공하다 -> 제공자, 제공기
+~~~ing serving => 제공하는 행위 
+~~ful => ~스러운
+
+route 경로를 찾다.
+router 경로기
+routing 경로를 찾는 행위
+
+program 순서도
+programer 순서도를 작성하는 사람/기계
+programing 순서도를 작성하는 행위
+
+restful API 
+API: 리모컨
+ful: ~스러운
+rest: 규칙, 설계 규칙
+
+viwe에서 html을 render하지 않고(서버가 화면을 그리는 형태, mtv), 클라이언트한테 데이터 덩어리를 넘기는 것(drf)
+
+serializer(직렬화)사용이유: 파이썬 문법으로 작성되어 있기 때문에 프론트에서 모름. 그래서 백에서 프론트로 넘어갈 수 있도록 변환해주는 것(json) 
+
+
+프론트
+언어:javascript 
+프레임 워크: vue, react(라이브러리)
+
+서버
+언어:python 
